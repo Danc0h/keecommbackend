@@ -226,66 +226,11 @@ orderRouter.post(
 );
 
 // Mpesa Callback Route
-
-// Mpesa Callback Route
 orderRouter.post(
   "/mpesa/callback",
   expressAsyncHandler(async (req, res) => {
     const callbackData = req.body;
     console.log(callbackData);
-
-    /*
-    try {
-      // Log the full callback data for debugging purposes
-      console.log("Full Callback Data:", req.body);
-
-      const callbackData = req.body.Body.stkCallback;
-
-      if (callbackData) {
-        const {
-          MerchantRequestID,
-          CheckoutRequestID,
-          ResultCode,
-          ResultDesc,
-          CallbackMetadata,
-        } = callbackData;
-
-        if (CallbackMetadata && CallbackMetadata.Item) {
-          const transactionData = CallbackMetadata.Item.reduce((acc, item) => {
-            acc[item.Name] = item.Value;
-            return acc;
-          }, {});
-
-          // Log the extracted transaction data
-          console.log("Merchant Request ID:", MerchantRequestID);
-          console.log("Checkout Request ID:", CheckoutRequestID);
-          console.log("Result Code:", ResultCode);
-          console.log("Result Description:", ResultDesc);
-          console.log("Transaction Metadata:", transactionData);
-
-          // Example: Update your order status based on ResultCode
-          // Note: Implement your own logic here to update order status or handle transactions
-          // const order = await Order.findById(transactionData.AccountReference);
-          // order.status = ResultCode === 0 ? 'Paid' : 'Failed';
-          // await order.save();
-
-          // Respond to M-Pesa that the callback has been processed
-          res.status(200).send("Callback received successfully");
-        } else {
-          res
-            .status(400)
-            .send("Invalid callback data: Missing CallbackMetadata or Item");
-        }
-      } else {
-        res
-          .status(400)
-          .send("Invalid callback data: Missing Body or stkCallback");
-      }
-    } catch (error) {
-      console.error("Callback Error:", error);
-      res.status(500).send({ message: error.message });
-    }
-  */
   })
 );
 
