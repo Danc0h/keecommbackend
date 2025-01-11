@@ -20,6 +20,12 @@ const productSchema = new mongoose.Schema(
     image: { type: String, required: true },
     brand: { type: String, required: true },
     price: { type: Number, required: true },
+    discountPercentage: {
+      type: Number,
+      default: function () {
+        return Math.floor(Math.random() * (25 - 15 + 1)) + 15; // Random discount between 15 and 25
+      },
+    },
     countInStock: { type: Number, required: true },
     reviews: [reviewSchema],
     description: { type: String, required: true },
